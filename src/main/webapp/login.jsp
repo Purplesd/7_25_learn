@@ -36,9 +36,6 @@
                 <h1>
                     简单登录模块!
                 </h1>
-                <c:if test="${!(empty errors)}">
-                    ${errors}
-                </c:if>
                 <p>
                    这是我们所写的简单的利用纯Servlet所开发的登录和注册模块,仅供学习使用!
                 </p>
@@ -64,6 +61,14 @@
                     <label for="password" class="col-sm-2 control-label">密码:</label>
                     <div class="col-sm-10">
                         <input type="password" class="form-control" id="password" name="password" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <c:if test="${!(empty usererror)}">
+                            <p style="color: red">${usererror}</p>
+
+                        </c:if>
                     </div>
                 </div>
                 <div class="form-group">

@@ -13,4 +13,14 @@ public class UserServiceImpl implements UserService {
         user.setPassword(MD5Util.getMD5(user.getPassword()));
         return userDao.login(user);
     }
+
+    @Override
+    public boolean addUser(User user) {
+        return userDao.addUser(user);
+    }
+
+    @Override
+    public boolean verifyUserName(String username) {
+        return userDao.verifyUserName(username);
+    }
 }

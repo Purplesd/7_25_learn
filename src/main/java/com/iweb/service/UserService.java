@@ -4,4 +4,6 @@ import com.iweb.pojo.User;
 
 public interface UserService {
     User login(User user);
+    boolean addUser(User user);
+    boolean verifyUserName(String username);
 }

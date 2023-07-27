@@ -8,6 +8,7 @@ public interface CategoryDao {
     List<Category> list();
     boolean add(Category category);
     boolean delete(String id);
+    boolean verifyName(String name);
     boolean update(Category category);
     Category get(String id);
 }

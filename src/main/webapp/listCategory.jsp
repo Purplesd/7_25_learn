@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>Title</title>
+    <meta charset="UTF-8">
 </head>
 <body>
 <table>
@@ -29,6 +30,10 @@
         </tr>
     </c:forEach>
 </table>
+<c:if test="${!(empty CategoryError)}">
+    <p style="color: red">${CategoryError}</p>
+
+</c:if>
 <form action="addCategory" method="post">
     <input type="text" name="name"><br/>
     <input type="submit" value="新增">

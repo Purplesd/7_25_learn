@@ -72,4 +72,15 @@ public class CategoryDaoImpl implements CategoryDao {
         }
         return category;
     }
+    @Override
+    public boolean verifyName(String name) {
+        String sql = "select count(*) from category where name=?";
+        try {
+            Number number= (Number) qr.query(sql,new ScalarHandler<>(),name);
+            return  number.intValue()>0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

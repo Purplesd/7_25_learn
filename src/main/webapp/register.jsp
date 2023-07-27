@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: GUAN
@@ -23,6 +24,10 @@
         <input type="text" id="username" class="form-control" placeholder="用户名" name="username"  autofocus>
         <label for="password" class="sr-only">密码:</label>
         <input type="password" id="password" class="form-control" placeholder="密码" name="password" >
+        <c:if test="${!(empty RegisterError)}">
+            <p style="color: red">${RegisterError}</p>
+
+        </c:if>
         <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
     </form>
 
