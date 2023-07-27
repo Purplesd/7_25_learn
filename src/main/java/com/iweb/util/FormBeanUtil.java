@@ -1,9 +1,7 @@
 package com.iweb.util;
 
 import org.apache.commons.beanutils.BeanUtils;
-
 import java.util.Map;
-
 public class FormBeanUtil {
     public static<T> T formToBean(Map<String,String[]> map,Class<T> tClass){
         T t=null;
