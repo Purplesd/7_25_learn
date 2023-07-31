@@ -17,8 +17,9 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="updateCategory" method="get">
-        <input type="text"  placeholder="分类名" name="name">
+    <form action="updateCategory" method="post">
+        <input type="hidden" value="${category.id}" name="id">
+        <input type="text"  value="${category.name}" name="name"><br/>
         <c:if test="${!(empty EditCategoryError)}">
             <p style="color: red">${EditCategoryError}</p>
         </c:if>

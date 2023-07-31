@@ -15,9 +15,13 @@ public class DeleteCategoryServlet extends HttpServlet {
     private CategoryService categoryService = new CategoryServiceImpl();
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int i=req.getQueryString().indexOf('=')+1;
-        String id = req.getQueryString().substring(i);
-        categoryService.delete(id);
-        resp.sendRedirect("listCategory");
+        String id =req.getParameter("id");
+        if(categoryService.delete(id)){
+            req.getSession().removeAttribute("CategoryError");
+            resp.sendRedirect("listCategory");
+        }else {
+            req.getSession().setAttribute("CategoryError","删除失败");
+            resp.sendRedirect("listCategory");
+        }
     }
 }

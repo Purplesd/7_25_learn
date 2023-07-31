@@ -13,8 +13,10 @@
 </head>
 <body>
 <p>
-    欢迎你，尊贵的用户
+    欢迎你，尊贵的用户${user.username}<br>
     <a href="listCategory">查看分类</a>
+    <a href="listOrder">查看订单</a>
+    <a href="exitLogin">退出登入</a>
 </p>
 </body>
 </html>

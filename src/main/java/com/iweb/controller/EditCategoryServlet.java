@@ -15,13 +15,12 @@ import java.util.Map;
 
 @WebServlet("/editCategory")
 public class EditCategoryServlet extends HttpServlet {
-
+    private CategoryService categoryService = new CategoryServiceImpl();
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html;charset=UTF-8");
         String id =req.getParameter("id");
-        req.getSession().setAttribute("id",id);
+        Category category = categoryService.get(id);
+        req.setAttribute("category",category);
         req.getRequestDispatcher("editCategory.jsp").forward(req,resp);
     }
 }

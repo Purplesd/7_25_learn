@@ -18,11 +18,8 @@ public class LoginServlet extends HttpServlet {
     private UserService userService = new UserServiceImpl();
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
         Map<String,String[]> paramMap = request.getParameterMap();
         User user=FormBeanUtil.formToBean(paramMap,User.class);
-
         if("".equals(user.getUsername())|| "".equals(user.getPassword())){
             request.getSession().setAttribute("usererror","你出错了，笨比");
             response.sendRedirect("login.jsp");
@@ -33,6 +30,8 @@ public class LoginServlet extends HttpServlet {
                 request.getSession().setAttribute("usererror","用户名或密码出错了，笨比");
                 response.sendRedirect("login.jsp");
             }else {
+                request.getSession().removeAttribute("usererror");
+                request.getSession().setAttribute("user",user);
                 request.getRequestDispatcher("main.jsp").forward(request,response);
             }
             return;

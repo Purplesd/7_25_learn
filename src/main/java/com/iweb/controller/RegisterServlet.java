@@ -4,9 +4,6 @@ import com.iweb.pojo.User;
 import com.iweb.service.UserService;
 import com.iweb.service.impl.UserServiceImpl;
 import com.iweb.util.FormBeanUtil;
-import com.iweb.util.MD5Util;
-import com.iweb.util.UUIDUtil;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,26 +16,20 @@ import java.util.Map;
 public class RegisterServlet extends HttpServlet {
     private UserService userService = new UserServiceImpl();
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html;charset=UTF-8");
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
         Map<String,String[]> paramMap = req.getParameterMap();
         User user= FormBeanUtil.formToBean(paramMap,User.class);
-        user.setId(UUIDUtil.uuid());
-        user.setPassword(MD5Util.getMD5(user.getPassword()));
         if("".equals(user.getUsername())||"".equals(user.getPassword())){
             req.getSession().setAttribute("RegisterError","输入不完整");
             resp.sendRedirect("register.jsp");
             return;
         }
-        if(userService.verifyUserName(user.getUsername())){
-            req.getSession().setAttribute("RegisterError","用户名已存在");
-            resp.sendRedirect("register.jsp");
-            return;
-        }else{
-            userService.addUser(user);
+        if(userService.register(user)){
+            req.getSession().removeAttribute("RegisterError");
             resp.sendRedirect("login.jsp");
-            return;
+        }else{
+            req.getSession().setAttribute("RegisterError","用户名或ID已存在");
+            resp.sendRedirect("register.jsp");
         }
     }
 }

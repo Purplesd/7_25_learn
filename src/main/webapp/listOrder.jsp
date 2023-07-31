@@ -17,16 +17,16 @@
 <table>
     <tr>
         <td>id</td>
-        <td>name</td>
-        <td>编辑</td>
-        <td>删除</td>
+        <td>pid</td>
+        <td>地址</td>
+        <td>详情</td>
     </tr>
-    <c:forEach items="${categories}" var="cs" varStatus="st">
+    <c:forEach items="${orders}" var="cs" varStatus="st">
         <tr>
             <th>${cs.id}</th>
-            <th><a href="listProduct?categoryName=${cs.name}">${cs.name}</a></th>
-            <th><a href="editCategory?id=${cs.id}">编辑</a></th>
-            <th><a href="deleteCategory?id=${cs.id}">删除</a></th>
+            <th>${cs.pid}</th>
+            <th>${cs.address}</th>
+            <th><a href="orderDetail?pid=${cs.pid}">详情</a></th>
         </tr>
     </c:forEach>
 </table>
